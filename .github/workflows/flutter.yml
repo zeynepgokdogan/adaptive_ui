@@ -11,28 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Kodu checkout et
       - name: Checkout
         uses: actions/checkout@v3
 
-      # 2. Flutter kur
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.24.0"   # senin kullandığın sürüm
+          flutter-version: "3.24.0" 
 
-      # 3. Bağımlılıkları yükle
       - name: Install dependencies
         run: flutter pub get
 
-      # 4. Format kontrolü (opsiyonel ama profesyonel için önerilir)
       - name: Format check
         run: dart format --output=none --set-exit-if-changed .
 
-      # 5. Statik analiz (lint hataları yakalar)
       - name: Analyze
         run: flutter analyze
 
-      # 6. Test çalıştır
       - name: Run tests
         run: flutter test
