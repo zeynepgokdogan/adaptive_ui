@@ -22,31 +22,37 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     switch (platform) {
       case AppPlatform.iOS:
-        return CupertinoNavigationBar(
-          middle: title != null ? Text(title!) : null,
-          leading: leading,
-          trailing: actions != null && actions!.isNotEmpty
-              ? Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: actions!,
-                )
-              : null,
-        );
+        return cupertinoNavigationBar();
 
       case AppPlatform.android:
-      default:
-        return AppBar(
-          title: title != null ? Text(title!) : null,
-          actions: actions,
-          leading: leading,
-          centerTitle: centerTitle,
-        );
+        return androidAppBar();
     }
+  }
+
+  AppBar androidAppBar() {
+    return AppBar(
+      title: title != null ? Text(title!) : null,
+      actions: actions,
+      leading: leading,
+      centerTitle: centerTitle,
+    );
+  }
+
+  CupertinoNavigationBar cupertinoNavigationBar() {
+    return CupertinoNavigationBar(
+      middle: title != null ? Text(title!) : null,
+      leading: leading,
+      trailing: actions != null && actions!.isNotEmpty
+          ? Row(
+              mainAxisSize: MainAxisSize.min,
+              children: actions!,
+            )
+          : null,
+    );
   }
 
   @override
   Size get preferredSize {
-    // Material AppBar ve CupertinoNavigationBar'ın yükseklikleri farklı.
     return const Size.fromHeight(kToolbarHeight);
   }
 }

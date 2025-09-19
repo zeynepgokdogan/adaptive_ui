@@ -26,5 +26,5 @@ class AdaptiveTheme extends InheritedWidget {
       );
 
   @override
-  bool updateShouldNotify(AdaptiveTheme old) => colors != old.colors;
+  bool updateShouldNotify(AdaptiveTheme oldWidget) => colors != oldWidget.colors;
 }

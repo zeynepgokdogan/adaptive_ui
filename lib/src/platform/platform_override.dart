@@ -10,5 +10,5 @@ class PlatformOverride extends InheritedWidget {
       ?? detectPlatform();
 
   @override
-  bool updateShouldNotify(PlatformOverride old) => forced != old.forced;
+  bool updateShouldNotify(PlatformOverride oldWidget) => forced != oldWidget.forced;
 }
