@@ -1,55 +1,44 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:adaptive_ui/src/widgets/adaptive_app_bar.dart';
-import 'package:adaptive_ui/src/platform/platform_override.dart';
-import 'package:adaptive_ui/src/platform/platform_helper.dart';
+import 'package:adaptive_ui/adaptive_ui.dart'; // senin paket yolu
 
 void main() {
-  testWidgets("AdaptiveAppBar shows title", (WidgetTester tester) async {
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          appBar: AdaptiveAppBar(title: "Hello AppBar"),
+  group('AdaptiveAppBar Widget Tests', () {
+    testWidgets('Android platformunda AppBar gösteriliyor', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: PlatformOverride(
+            forced: AppPlatform.android,
+            child: Scaffold(
+              appBar: AdaptiveAppBar(title: 'Android Title'),
+              body: const SizedBox(),
+            ),
+          ),
         ),
-      ),
-    );
+      );
 
-    expect(find.text("Hello AppBar"), findsOneWidget);
-  });
+      expect(find.byType(AppBar), findsOneWidget);
+      expect(find.byType(CupertinoNavigationBar), findsNothing);
+      expect(find.text('Android Title'), findsOneWidget);
+    });
 
-  testWidgets("AdaptiveAppBar shows CupertinoNavigationBar on iOS", (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        builder: (context, child) => const PlatformOverride(
-          forced: AppPlatform.iOS,
-          child: SizedBox(),
+    testWidgets('iOS platformunda CupertinoNavigationBar gösteriliyor', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: PlatformOverride(
+            forced: AppPlatform.iOS,
+            child: Scaffold(
+              appBar: AdaptiveAppBar(title: 'iOS Title'),
+              body: const SizedBox(),
+            ),
+          ),
         ),
-        home: const Scaffold(
-          appBar: AdaptiveAppBar(title: "Cupertino"),
-        ),
-      ),
-    );
+      );
 
-    expect(find.byType(CupertinoNavigationBar), findsOneWidget);
-    expect(find.text("Cupertino"), findsOneWidget);
-  });
-
-  testWidgets("AdaptiveAppBar shows Material AppBar on Android", (WidgetTester tester) async {
-    await tester.pumpWidget(
-      MaterialApp(
-        builder: (context, child) => const PlatformOverride(
-          forced: AppPlatform.android,
-          child: SizedBox(),
-        ),
-        home: const Scaffold(
-          appBar: AdaptiveAppBar(title: "Material"),
-        ),
-      ),
-    );
-
-    expect(find.byType(AppBar), findsOneWidget);
-    expect(find.text("Material"), findsOneWidget);
+      expect(find.byType(CupertinoNavigationBar), findsOneWidget);
+      expect(find.byType(AppBar), findsNothing);
+      expect(find.text('iOS Title'), findsOneWidget);
+    });
   });
 }

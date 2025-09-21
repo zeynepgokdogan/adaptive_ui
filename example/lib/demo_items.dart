@@ -79,20 +79,8 @@ final demos = [
     ),
   },
   {
-    "title": "Scaffold",
-    "icon": Icons.pages,
-    "page": AdaptiveScaffold(
-      appBar: const AdaptiveAppBar(title: "Scaffold Demo"),
-      body: Column(
-        children: const [
-          // Sayfa içeriği buraya
-        ],
-      ),
-    ),
-  },
-  {
-    "title": "Navigation Bar",
-    "icon": Icons.pages,
+    "title": "Bottom Navigation Bar",
+    "icon": Icons.house,
     "page": AdaptiveScaffold(
       appBar: const AdaptiveAppBar(title: "Bottom Navigation Bar Demo"),
       body: Center(

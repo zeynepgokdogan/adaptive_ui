@@ -45,11 +45,6 @@ class AdaptiveScaffold extends StatelessWidget {
           bottomNavigationBar: bottomNavigationBar,
           backgroundColor: backgroundColor,
         );
-
-      default:
-        return Scaffold(
-          body: SafeArea(child: body),
-        );
     }
   }
 }
