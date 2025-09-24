@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:adaptive_ui/adaptive_ui.dart'; // senin paket yolu
+import 'package:adaptive_ui/adaptive_ui.dart';
 
 void main() {
   group('AdaptiveAppBar Widget Tests', () {
