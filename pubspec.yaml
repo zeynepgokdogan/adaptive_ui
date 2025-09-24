@@ -1,6 +1,6 @@
 name: adaptive_ui
 description: Platforma göre otomatik olarak Cupertino veya Material widget kullanan Flutter UI bileşenleri.
-version: 0.0.2
+version: 0.1.2
 homepage: https://github.com/zeynepgokdogan/adaptive_ui
 
 environment:
