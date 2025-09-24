@@ -1,18 +1,18 @@
 # Adaptive UI
 
-Flutter için **platforma duyarlı UI bileşenleri**.  
-Bu paket ile Android’de otomatik olarak Material bileşenler, iOS’ta ise Cupertino bileşenler kullanılır.  
+**Platform-aware UI components for Flutter**.  
+With this package, Material widgets are automatically used on Android and Cupertino widgets on iOS.  
 
-## ✨ Özellikler
+## Features
 
-- Tek bir widget ile hem Android hem iOS desteği
-- Material (Android) ve Cupertino (iOS) arasında otomatik geçiş
-- Testlerle %100 kapsama
-- Kolay kullanım, esnek özelleştirme
+- Single widget with both Android and iOS support
+- Automatic switch between Material (Android) and Cupertino (iOS)
+- 100% test coverage
+- Easy to use and flexible customization
 
-## 📦 Kurulum
+## Installation
 
-`pubspec.yaml` dosyana ekle:
+Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
