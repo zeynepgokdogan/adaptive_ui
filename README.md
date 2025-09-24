@@ -16,4 +16,4 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  adaptive_ui: ^0.0.1
+  adaptive_ui_plus: ^0.0.1
