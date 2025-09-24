@@ -1,4 +1,4 @@
-import 'package:adaptive_ui/adaptive_ui.dart';
+import 'package:adaptive_ui_plus/adaptive_ui_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

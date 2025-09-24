@@ -1,8 +1,8 @@
+import 'package:adaptive_ui_plus/adaptive_ui_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_ui/src/platform/platform_helper.dart';
-import 'package:adaptive_ui/src/platform/platform_override.dart';
+
 
 class AdaptiveDialog extends StatelessWidget {
   final String title;

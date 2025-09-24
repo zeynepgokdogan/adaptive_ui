@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:adaptive_ui/adaptive_ui.dart';
+import 'package:adaptive_ui_plus/adaptive_ui_plus.dart';
 
 final demos = [
   {
