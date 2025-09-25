@@ -3,26 +3,33 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AdaptiveIconButton extends StatelessWidget {
+  final Widget? icon;
+  final String text;
+  final Color? color;
+  final Color? textColor;
+  final double? width;
+  final double? height;
+  final EdgeInsetsGeometry? padding;
+  final TextStyle? textStyle;
+  final VoidCallback onPressed;
+
   const AdaptiveIconButton({
     super.key,
     this.icon,
     required this.text,
     this.color,
+    this.textColor,
     this.width,
     this.height,
+    this.padding,
+    this.textStyle,
     required this.onPressed,
   });
-
-  final Widget? icon;
-  final String text;
-  final Color? color;
-  final double? width;
-  final double? height;
-  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     final platform = PlatformOverride.of(context);
+    final colors = AdaptiveTheme.of(context).colors;
 
     final btnChild = Row(
       mainAxisSize: MainAxisSize.min,
@@ -34,7 +41,11 @@ class AdaptiveIconButton extends StatelessWidget {
         ],
         Text(
           text,
-          style: TextStyle(color: CupertinoColors.white),
+          style: textStyle ??
+              Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: textColor ?? colors.onPrimary,
+                    fontWeight: FontWeight.w600,
+                  ),
         ),
       ],
     );
@@ -44,8 +55,10 @@ class AdaptiveIconButton extends StatelessWidget {
         return SizedBox(
           width: width,
           height: height,
-          child: CupertinoButton(
-            color: color ?? CupertinoColors.activeBlue,
+          child: CupertinoButton.filled(
+            padding: padding ??
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            borderRadius: BorderRadius.circular(12),
             onPressed: onPressed,
             child: btnChild,
           ),
@@ -57,10 +70,14 @@ class AdaptiveIconButton extends StatelessWidget {
           height: height,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: color ?? Theme.of(context).primaryColor,
+              backgroundColor: color ?? colors.primary,
+              foregroundColor: textColor ?? colors.onPrimary,
+              padding: padding ??
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
               ),
+              elevation: 2,
             ),
             onPressed: onPressed,
             child: btnChild,

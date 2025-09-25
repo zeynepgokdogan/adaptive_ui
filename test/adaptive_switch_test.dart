@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('AdaptiveCheckbox Widget Tests', () {
-    testWidgets('Android Checkbox çalışıyor', (WidgetTester tester) async {
+  group('AdaptiveSwitch Widget Tests', () {
+    testWidgets('Android Switch çalışıyor', (WidgetTester tester) async {
       bool? changedValue;
 
       await tester.pumpWidget(MaterialApp(
@@ -13,7 +13,7 @@ void main() {
           body: Material(
             child: PlatformOverride(
               forced: AppPlatform.android,
-              child: AdaptiveCheckbox(
+              child: AdaptiveSwitch(
                 value: false,
                 onChanged: (val) => changedValue = val,
               ),
@@ -22,9 +22,9 @@ void main() {
         ),
       ));
 
-      expect(find.byType(Checkbox), findsOneWidget);
+      expect(find.byType(Switch), findsOneWidget);
 
-      await tester.tap(find.byType(Checkbox));
+      await tester.tap(find.byType(Switch));
       await tester.pumpAndSettle();
 
       expect(changedValue, true);
@@ -37,7 +37,7 @@ void main() {
         home: Scaffold(
           body: PlatformOverride(
             forced: AppPlatform.iOS,
-            child: AdaptiveCheckbox(
+            child: AdaptiveSwitch(
               value: false,
               onChanged: (val) => changedValue = val,
             ),

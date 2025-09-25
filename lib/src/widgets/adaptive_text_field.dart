@@ -7,6 +7,7 @@ class AdaptiveTextField extends StatelessWidget {
     super.key,
     this.width,
     this.height,
+    this.controller,
     this.textColor,
     this.textSize,
     this.backgroundColor,
@@ -17,7 +18,10 @@ class AdaptiveTextField extends StatelessWidget {
     this.maxLines = 1,
     this.borderRadius = 8.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-    this.controller,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.readOnly = false,
+    this.autofocus = false,
     required this.labelText,
     required this.hintText,
   });
@@ -37,13 +41,18 @@ class AdaptiveTextField extends StatelessWidget {
   final int maxLines;
   final double borderRadius;
   final EdgeInsets padding;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
+  final bool readOnly;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
     final platform = PlatformOverride.of(context);
+    final colors = AdaptiveTheme.of(context).colors;
 
     final textStyle = TextStyle(
-      color: textColor ?? Colors.black,
+      color: textColor ?? colors.onSurface,
       fontSize: textSize ?? 16,
     );
 
@@ -62,8 +71,12 @@ class AdaptiveTextField extends StatelessWidget {
             padding: padding,
             onChanged: onChanged,
             onSubmitted: onSubmitted,
+            readOnly: readOnly,
+            autofocus: autofocus,
+            prefix: prefixIcon,
+            suffix: suffixIcon,
             decoration: BoxDecoration(
-              color: backgroundColor ?? CupertinoColors.systemGrey6,
+              color: backgroundColor ?? colors.surface.withOpacity(0.9),
               borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),
@@ -81,11 +94,15 @@ class AdaptiveTextField extends StatelessWidget {
             maxLines: maxLines,
             onChanged: onChanged,
             onSubmitted: onSubmitted,
+            readOnly: readOnly,
+            autofocus: autofocus,
             decoration: InputDecoration(
               labelText: labelText,
               hintText: hintText,
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
               filled: true,
-              fillColor: backgroundColor ?? Colors.grey[200],
+              fillColor: backgroundColor ?? colors.surface.withOpacity(0.9),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(borderRadius),
               ),
