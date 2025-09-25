@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:adaptive_ui_plus/adaptive_ui_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
@@ -32,9 +34,7 @@ class AdaptiveSwitch extends StatelessWidget {
         return _buildCupertinoSwitch(context);
       case AppPlatform.android:
         return _buildMaterialSwitch(context);
-      default:
-        return _buildMaterialSwitch(context);
-    }
+      }
   }
 
   Widget _buildCupertinoSwitch(BuildContext context) {
